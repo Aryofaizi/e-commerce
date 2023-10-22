@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+    web:
+      build: "."
+      command: "/code/python3 manage.py runserver 0.0.0.0:8000"
+      volumes:
+       - ".:/code"
+      ports:
+       - "8000:000"
+      depends_on:
+       - "db"
+      environment:
+       - "DJANGO_DEBUG=DOCKER_DJANGO_DEBUG"
+       - "DJANGO_SECRET_KEY=DOCKER_DJANGO_SECRET_KEY"
+
+    db:
+      image: postgres:14
+       - "POSTGRES_HOST_AUTH_METHOD=trust"
+
+
