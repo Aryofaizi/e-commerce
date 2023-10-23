@@ -2,20 +2,24 @@ version: '3.8'
 
 services:
     web:
-      build: "."
-      command: "/code/python3 manage.py runserver 0.0.0.0:8000"
+      build: .
+      command: python3 /code/manage.py runserver 0.0.0.0:8000
       volumes:
-       - ".:/code"
+       - .:/code
       ports:
-       - "8000:000"
+       - "8000:8000"
       depends_on:
-       - "db"
+       - db
       environment:
-       - "DJANGO_DEBUG=DOCKER_DJANGO_DEBUG"
-       - "DJANGO_SECRET_KEY=DOCKER_DJANGO_SECRET_KEY"
+       - debug=docker_django_debug
+       - DJANGO_SECRET_KEY=DOCKER_DJANGO_SECRET_KEY
+       - django_db=docker_django_db
+       - django_db_user=docker_django_db_user
+       - django_db_password=docker_django_db_password
 
     db:
       image: postgres:14
-       - "POSTGRES_HOST_AUTH_METHOD=trust"
+      environment:
+      - POSTGRES_HOST_AUTH_METHOD=trust
 
 
