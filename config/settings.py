@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     # third party
     'allauth',
     'allauth.account',
+    'crispy_forms',
+    "crispy_bootstrap5",
     #locals
     'accounts',
     'pages',
@@ -144,5 +146,10 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
+# all-auth
 AUTH_USER_MODEL = "accounts.CustomUser"
+
+# crispy forms
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+
+CRISPY_TEMPLATE_PACK = "bootstrap5"
